@@ -1,0 +1,28 @@
+[pytest]
+# 指定执行时使用的参数
+addopts = -v -s --driver Chrome
+
+# 注册标记
+markers =
+    login:smoke
+    logout: run all tests
+    middle: middle等级的case
+
+# 指定pytest的最低运行版本
+minversion = 3.0
+
+# 指定忽略的目录,不会取配置的目录下去搜索用例，节省时间
+norecursedirs = .pytest_cache
+
+# 指定测试目录
+testpaths = test
+
+# 指定测试模块搜索的规则
+python_files = test_*
+
+# 指定测试类搜索的规则
+python_classes = Test*
+
+# 指定测试函数搜索的规则
+python_functions = test_*
+

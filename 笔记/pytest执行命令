@@ -1,0 +1,22 @@
+全部执行
+1.命令行执行： python -m pytest -v "unit/"  执行unit文件夹下所有用例
+# -v是输出详细信息，
+# -s 执行print，不带-s会忽略print
+2.执行某一个测试模块  python -m pytest -v "unit/test_unit.py::test_add_float  #test_add_float为方法名
+3.按分类执行测试用例 -k 按名称  -m按装饰器值  @pytest.mark.value
+# -k 执行特定名称的用例，如 -k "login or logout",则用例名中包含login或logout的都会被执行
+# pytest.main(['-v', '-s', '-k', "login or logout", 'unit/'])
+4.失败立刻停止
+-x 遇到用例失败后停止执行，后续的用例不再被执行
+5.指定失败次数
+--maxfail=2 设定允许最多失败数为2，达到2个错误就停止，不再执行后续用例
+6.输出信息
+--tb=no 关闭信息
+--tb=short 只输出assert信息
+--tb=line 一行展示所有信息
+7.定位错误 --lf
+8.执行时间  --durations=N N为0时按执行时长倒序显示所有用例  N不为0时，统计执行时长大于N的用例
+
+9.插件的参数
+ --driver Chrome
+ --allure

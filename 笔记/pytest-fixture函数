@@ -1,0 +1,46 @@
+作用
+1.返回值
+@pytest.fixture()
+def login(username='wuya',password='123'):
+    if username=='wuya' and password=='123':
+        return 'asabbb'
+
+@pytest.fixture()
+def headers(login):
+    return {'auth:{0}'.format(login)}  #可以直接调用login返回值
+
+def test_profile(headers):   #可以多层嵌套
+    print('headers:{0}'.format(headers))
+*2.测试固件
+写法是
+@pytest.fixture()
+def init():
+    print('start')
+    yield
+    print('end')
+测试方法中参数添加init，yield把init函数分为两部分，yield之前的部分每次执行测试方法之前执行，yield之后的代码在方法执行后执行
+
+3.fixture的参数 name  可以将fixture函数名重命名
+@pytest.fixture(name="aad")
+def init():
+    print("start")
+    yield
+    print("end")
+调用时要用aad，如
+def test_login(aad):
+    assert 1 == 1
+
+4.fixture 作用域范围scope
+scope参数设置fixture函数的作用域，默认为function
+function：函数级，每个测试函数都会执行一次固件
+class：类级别，每个测试类执行一次，所有方法都可以使用
+module：模块级，每个模块执行一次，模块内函数和方法都可使用
+session：会话级，一次测试只执行一次，所有被找到的函数和方法都可用。
+    比如cookie或统计整个测试运行时长。测试执行时连接数据库，测试结束时关闭数据库连接。
+
+5.fixture 自动执行参数 autouse=True：按作用域范围自动执行fixture函数
+
+*6.conftest.py文件，放一些共享的fixture函数，放到工程目录下，那么工程下的所有文件可以直接使用这些fixture函数
+
+7.内置固件 tmpdir & tmpdir_factory
+用于临时文件和目录管理，默认会在测试结束时删除。 --了解

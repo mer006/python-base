@@ -1,0 +1,11 @@
+1. 下载第三方库
+pip install pytest-selenium
+pytest运行时加参数  --driver Chrome
+
+使用：def test_login(selenium):
+        selenium.get("http://www.baidu.com")
+
+2.参数化
+为什么要进行参数化：相同的测试步骤，不同的测试数据对应不同的业务场景
+能解决的问题：把很多重复的代码 使用一个测试用例代码解决
+参数化本质：把测试数据存到列表中，然后对列表进行循环，每次把循环的对象赋值给具体

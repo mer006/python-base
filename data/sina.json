@@ -1,0 +1,7 @@
+{
+  "sina":
+  [
+        {"username": "", "password": "", "result": "请输入邮箱名"},
+        {"username": "22", "password": "33", "result": "您输入的邮箱名格式不正确"}
+    ]
+}
